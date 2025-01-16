@@ -101,42 +101,54 @@ const projectsData = {
 };
 
 // Modal functionality
-document.addEventListener('DOMContentLoaded', function() {
+const initializePortfolioModal = () => {
     const modal = document.querySelector('.project-details-modal');
     const closeBtn = document.querySelector('.close-modal');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
     let currentImageIndex = 0;
     let currentImages = [];
 
+    if (!modal || !closeBtn || portfolioItems.length === 0) {
+        console.error('Required modal elements not found');
+        return;
+    }
+
     // Open modal with project details
     function openModal(projectId) {
         const project = projectsData[projectId];
-        if (!project) return;
+        if (!project) {
+            console.error('Project data not found for:', projectId);
+            return;
+        }
 
-        // Update modal content
-        document.querySelector('.modal-title').textContent = project.title;
-        document.querySelector('#project-description-text').textContent = project.description;
-        
-        // Update technologies
-        const techList = document.querySelector('.technologies-list');
-        techList.innerHTML = project.technologies
-            .map(tech => `<li>${tech}</li>`)
-            .join('');
+        try {
+            // Update modal content
+            document.querySelector('.modal-title').textContent = project.title;
+            document.querySelector('#project-description-text').textContent = project.description;
+            
+            // Update technologies
+            const techList = document.querySelector('.technologies-list');
+            techList.innerHTML = project.technologies
+                .map(tech => `<li>${tech}</li>`)
+                .join('');
 
-        // Update links
-        const demoLink = document.querySelector('.live-demo');
-        const sourceLink = document.querySelector('.source-code');
-        demoLink.href = project.liveDemo;
-        sourceLink.href = project.sourceCode;
+            // Update links
+            const demoLink = document.querySelector('.live-demo');
+            const sourceLink = document.querySelector('.source-code');
+            demoLink.href = project.liveDemo;
+            sourceLink.href = project.sourceCode;
 
-        // Setup gallery
-        currentImages = project.images;
-        currentImageIndex = 0;
-        updateGallery();
+            // Setup gallery
+            currentImages = project.images;
+            currentImageIndex = 0;
+            updateGallery();
 
-        // Show modal
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
+            // Show modal
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        } catch (error) {
+            console.error('Error updating modal content:', error);
+        }
     }
 
     // Close modal
@@ -148,11 +160,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update gallery images
     function updateGallery() {
         const galleryContainer = document.querySelector('.gallery-images');
+        if (!galleryContainer) return;
+
         galleryContainer.innerHTML = currentImages
             .map((src, index) => `
                 <img src="${src}" 
                     alt="Project screenshot ${index + 1}" 
                     class="${index === currentImageIndex ? 'active' : ''}"
+                    onerror="this.src='images/placeholder.png'"
                 >
             `)
             .join('');
@@ -166,22 +181,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event Listeners
     portfolioItems.forEach(item => {
-        item.addEventListener('click', () => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
             const projectId = item.getAttribute('data-project');
+            console.log('Opening project:', projectId);
             openModal(projectId);
         });
     });
 
     closeBtn.addEventListener('click', closeModal);
+    
     modal.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
     });
 
-    document.querySelector('.gallery-nav.prev').addEventListener('click', () => navigateGallery(-1));
-    document.querySelector('.gallery-nav.next').addEventListener('click', () => navigateGallery(1));
+    const prevBtn = document.querySelector('.gallery-nav.prev');
+    const nextBtn = document.querySelector('.gallery-nav.next');
+    
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => navigateGallery(-1));
+        nextBtn.addEventListener('click', () => navigateGallery(1));
+    }
 
     // Close on escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeModal();
     });
-});
+};
+
+// Initialize modal when DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializePortfolioModal);
+} else {
+    initializePortfolioModal();
+}
