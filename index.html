@@ -384,56 +384,83 @@
                     </div>
                     <div class="row">
 
-                        <div class="portfolio-item padd-15">
+                        <div class="portfolio-item padd-15" data-project="expense-tracker">
                             <div class="portfolio-item-inner shadow-dark">
+                                <h3 class="project-title">GraceNet Social Network</h3>
                                 <div class="portfolio-img">
-                                    <img src="images/expenseTracker.png" alt="">
+                                    <img src="images/gracenet/gNet01.png" alt="GraceNet Social Network">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="portfolio-item padd-15">
+                        <div class="portfolio-item padd-15" data-project="greeny-earth">
                             <div class="portfolio-item-inner shadow-dark">
+                                <h3 class="project-title">H4k3r Ch47 S9h3r3</h3>
                                 <div class="portfolio-img">
-                                    <img src="images/greenyEarth.png" alt="">
+                                    <img src="images/hcs/hcs4.png" alt="Greeny Earth Platform">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="portfolio-item padd-15">
+                        <div class="portfolio-item padd-15" data-project="netflix-clone">
                             <div class="portfolio-item-inner shadow-dark">
+                                <h3 class="project-title">Enamore Child Aid Foundation</h3>
                                 <div class="portfolio-img">
-                                    <img src="images/netflixClone.png" alt="">
+                                    <img src="images/ecaf/ecaf01.png" alt="Netflix Clone">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="portfolio-item padd-15">
+                        <div class="portfolio-item padd-15" data-project="budget-system">
                             <div class="portfolio-item-inner shadow-dark">
+                                <h3 class="project-title">Budget Management System</h3>
                                 <div class="portfolio-img">
-                                    <img src="images/expenseTracker.png" alt="">
+                                    <img src="images/expenseTracker.png" alt="Budget Management System">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="portfolio-item padd-15">
+                        <div class="portfolio-item padd-15" data-project="eco-monitor">
                             <div class="portfolio-item-inner shadow-dark">
+                                <h3 class="project-title">Environmental Monitoring</h3>
                                 <div class="portfolio-img">
-                                    <img src="images/greenyEarth.png" alt="">
+                                    <img src="images/greenyEarth.png" alt="Environmental Monitoring">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="portfolio-item padd-15">
+                        <div class="portfolio-item padd-15" data-project="stream-platform">
                             <div class="portfolio-item-inner shadow-dark">
+                                <h3 class="project-title">Streaming Platform</h3>
                                 <div class="portfolio-img">
-                                    <img src="images/netflixClone.png" alt="">
+                                    <img src="images/netflixClone.png" alt="Streaming Platform">
                                 </div>
                             </div>
                         </div>
 
                     </div>
                 </div>
+                 <!-- Image Zoom Modal -->
+    <div class="zoom-modal">
+        <span class="zoom-close">&times;</span>
+        <div class="zoom-content">
+            <img src="" alt="Zoomed Image" class="zoomed-image">
+            <div class="zoom-controls">
+                <button class="zoom-btn zoom-in" title="Zoom In">
+                    <i class="fas fa-search-plus"></i>
+                </button>
+                <button class="zoom-btn zoom-out" title="Zoom Out">
+                    <i class="fas fa-search-minus"></i>
+                </button>
+                <button class="zoom-btn zoom-reset" title="Reset Zoom">
+                    <i class="fas fa-undo"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.js" integrity="sha512-+2pW8xXU/rNr7VS+H62aqapfRpqFwnSQh9ap6THjsm41AxgA0MhFRtfrABS+Lx2KHJn82UOrnBKhjZOXpom2LQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
             </section>
 
             <!-- ====== Section Portfolio End ====== -->
@@ -562,10 +589,43 @@
 
     </div>
 
-    <!-- ========== Style Switcher  Start ========== -->
+    <!-- ========== Style Switcher  End ========== -->
+
+    <!-- Project Details Modal -->
+    <div class="project-details-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2 class="modal-title">Project Title</h2>
+            </div>
+            <div class="modal-body">
+                <div class="project-description">
+                    <h3>About Project</h3>
+                    <p id="project-description-text"></p>
+                </div>
+                <div class="project-gallery">
+                    <h3>Project Gallery</h3>
+                    <div class="gallery-container">
+                        <button class="gallery-nav prev">&lt;</button>
+                        <div class="gallery-images"></div>
+                        <button class="gallery-nav next">&gt;</button>
+                    </div>
+                </div>
+                <div class="project-details">
+                    <h3>Technologies Used</h3>
+                    <ul class="technologies-list"></ul>
+                    <div class="project-links">
+                        <a href="#" class="btn live-demo" target="_blank">Live Demo</a>
+                        <a href="#" class="btn source-code" target="_blank">Source Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.js" integrity="sha512-+2pW8xXU/rNr7VS+H62aqapfRpqFwnSQh9ap6THjsm41AxgA0MhFRtfrABS+Lx2KHJn82UOrnBKhjZOXpom2LQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/script.js"></script>
     <script src="js/style-switcher.js"></script>
+    <script src="js/portfolio-modal.js"></script>
 </body>
 </html>
